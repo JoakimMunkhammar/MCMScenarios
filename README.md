@@ -12,4 +12,3 @@ Uppsala University
 joakim.munkhammar@angstrom.uu.se
 
 I hope you enjoy it!
-![image](https://github.com/JoakimMunkhammar/MCMScenarios/assets/49065036/7255a7cb-ce91-4c06-88b7-262e7aa5ef5e)
