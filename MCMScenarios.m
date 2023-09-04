@@ -5,7 +5,7 @@
 % This function generates output scenarios from 
 % the MCM ECDF model given inputs.
 %
-% InData = The input data 
+% InData = The input data on form (Data,1)
 % M = Number of states (>0)
 % N = Number of scenarios (>0)
 % K = Number of forecasts ahead (>0)
@@ -50,7 +50,7 @@ end
 
 % Calculate the transition matrix P
 P=zeros(M,M);
-for t=1:size(InData,2)-1 % Train the transition matrix P
+for t=1:size(InData,1)-1 % Train the transition matrix P
     P(State(t),State(t+1)) = P(State(t),State(t+1))+1;
 end
 % Adding the carpet of transition probabilities
@@ -62,7 +62,7 @@ T = K*N;% Number of time-steps
 if strcmp(A,'ECDF')
     RandAll = zeros(M,T); 
     for i=1:M % The code for generating random ECDF samples
-        if size(InData(find(State==i)),2)>1 % Failsafe for empty bins
+        if size(InData(find(State==i)),1)>1 % Failsafe for empty bins
             RandAll(i,:) = randsample(InData(find(State==i)),T,true);
         else % If bins are empty, then use regular N-state
             RandAll(i,:) = min(InData)+(max(InData)-min(InData))*rand(T,1);
