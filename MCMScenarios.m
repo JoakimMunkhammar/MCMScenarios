@@ -33,12 +33,12 @@ ScenNum = N; % The number of scenarios
 ForecastNum = K; % The number of steps ahead to forecast
 
 % Discretize data to states
-State=floor(M*InData/max(InData))+1; % Make State the discrete "state" time-series
+State=floor(M*(InData-min(InData))/(max(InData)-min(InData)))+1; % Make State the discrete "state" time-series
 State(State<1)=20;
 State(State>M)=M;
 
 % Set the observation point
-ObsState=floor(M*ForecastPoint/max(InData))+1;
+ObsState=floor(M*(ForecastPoint-min(InData))/(max(InData)-min(InData)))+1;
 if ObsState>M
     ObsState = M;
     disp('Observation point > max of training data')
